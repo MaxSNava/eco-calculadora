@@ -23,6 +23,7 @@ const Header = () => {
 
           <div className="flex items-center gap-3">
             <span className="text-sm px-3 py-1 rounded-full bg-emerald-100">
+              {/* TODO Calcular los resultados en toneladas  cambiar el kg */}
               {calcularResultados(data).totalKg.toFixed(2)} kg CO₂e
             </span>
 
