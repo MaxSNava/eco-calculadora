@@ -6,7 +6,6 @@ import FoodSection from "./components/FormSections/FoodSection";
 import EnergySection from "./components/FormSections/EnergySection";
 import MaterialsSection from "./components/FormSections/MaterialsSection";
 import WasteSection from "./components/FormSections/WasteSection";
-import ResumeSection from "./components/FormSections/ResumeSection";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
@@ -27,7 +26,6 @@ const App = () => {
             {current === "energy" && <EnergySection />}
             {current === "material" && <MaterialsSection />}
             {current === "waste" && <WasteSection />}
-            {current === "resume" && <ResumeSection />}
           </section>
         </main>
 

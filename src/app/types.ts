@@ -4,5 +4,4 @@ export type SectionKey =
   | "food"
   | "energy"
   | "material"
-  | "waste"
-  | "resume";
+  | "waste";

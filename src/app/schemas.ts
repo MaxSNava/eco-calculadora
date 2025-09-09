@@ -1,33 +1,18 @@
 import { z } from "zod";
+import { transportSchema } from "./schemas/transportSchema";
+import { foodSchema } from "./schemas/foodSchema";
+import { energySchema } from "./schemas/energySchema";
+import { materialsSchema } from "./schemas/materialsSchema";
+import { wasteSchema } from "./schemas/wasteSchema";
 
 /** 1) Esquemas por sección */
 export const generalSchema = z.object({
-  eventeType: z.string().min(1, "Requerido"),
-  eventDay: z.date(),
+  eventType: z.string().min(1, "Requerido"),
+  eventDay: z.coerce.date(),
   eventDurationDay: z.coerce.number().int().min(1, ">= 1"),
   assistants: z.coerce.number().int().min(0),
   staff: z.coerce.number().int().min(0),
   treeCost: z.coerce.number().min(0),
-});
-
-export const transportSchema = z.object({
-  // TODO
-});
-
-export const foodSchema = z.object({
-  // TODO
-});
-
-export const energySchema = z.object({
-  // TODO
-});
-
-export const materialsSchema = z.object({
-  // TODO
-});
-
-export const wasteSchema = z.object({
-  // TODO
 });
 
 /** 2) Esquema total */
@@ -42,6 +27,7 @@ export const appSchema = z.object({
 export type AppData = z.infer<typeof appSchema>;
 
 /** 3) Cálculos */
+/** TODO cambiar a otro archivo */
 export function calcularResultados(d: AppData) {
   const t = 1 + 1;
   const f = 1 + 1;

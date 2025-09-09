@@ -1,7 +1,8 @@
 import { useCalculatorStore } from "../app/store";
+import type { SectionKey } from "../app/types";
 
 const NAV: {
-  key: Parameters<typeof useCalculatorStore.getState>["0"]["current"];
+  key: SectionKey;
   label: string;
 }[] = [
   { key: "general", label: "Información General" },
@@ -10,7 +11,6 @@ const NAV: {
   { key: "energy", label: "Energía" },
   { key: "material", label: "Materiales e Insumos" },
   { key: "waste", label: "Gestión de residuos" },
-  { key: "resume", label: "Resultados" },
 ];
 
 const Sidebar = () => {

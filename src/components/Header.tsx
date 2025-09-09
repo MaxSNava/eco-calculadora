@@ -3,7 +3,7 @@ import { calcularResultados } from "../app/schemas";
 import { TreePine } from "lucide-react";
 
 const Header = () => {
-  const { data, isComplete } = useCalculatorStore();
+  const { data } = useCalculatorStore();
 
   return (
     <>
@@ -26,7 +26,7 @@ const Header = () => {
               {calcularResultados(data).totalKg.toFixed(2)} kg CO₂e
             </span>
 
-            {isComplete && <button>Generar PDF</button>}
+            {/* TODO: Boton para generar el pdf cuando todas las secciones esten completas  */}
           </div>
         </div>
       </header>
