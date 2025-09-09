@@ -28,8 +28,9 @@ eco-calculadora/
 │  │  ├─ calculations.ts         # fórmulas (lee factors + datos → resultados)
 │  │  ├─ format.ts               # helpers de formato (números, unidades, fechas)
 │  ├─ components/
+│  │  ├─ Header.tsx
 │  │  ├─ Sidebar.tsx
-│  │  └─ ReportDisplay.tsx       # vista de resultados (previa al PDF)
+│  │  ├─ Footer.tsx
 │  │  └─ FormSections/
 │  │     ├─ GeneralSection.tsx
 │  │     ├─ TransportSection.tsx
