@@ -1,55 +1,57 @@
 import { z } from "zod";
 
 /** 1) Esquemas por sección */
-export const generalInfoSchema = z.object({
-  tipoEvento: z.string().min(1, "Requerido"),
-  fecha: z.string().min(1, "Requerido"),
-  dias: z.coerce.number().int().min(1, ">= 1"),
-  asistentes: z.coerce.number().int().min(0),
+export const generalSchema = z.object({
+  eventeType: z.string().min(1, "Requerido"),
+  eventDay: z.date(),
+  eventDurationDay: z.coerce.number().int().min(1, ">= 1"),
+  assistants: z.coerce.number().int().min(0),
   staff: z.coerce.number().int().min(0),
-  costoArbol: z.coerce.number().min(0),
+  treeCost: z.coerce.number().min(0),
 });
 
-export const transporteSchema = z.object({
-  kmPromedioAsistente: z.coerce.number().min(0),
-  factorTransporte: z.coerce.number().min(0), // kg CO2e/km
+export const transportSchema = z.object({
+  // TODO
 });
 
-export const comidaSchema = z.object({
-  comidasPorDia: z.coerce.number().int().min(0),
-  factorComida: z.coerce.number().min(0), // kg CO2e/porción
+export const foodSchema = z.object({
+  // TODO
 });
 
-export const energiaSchema = z.object({
-  kwhTotales: z.coerce.number().min(0),
-  factorEnergia: z.coerce.number().min(0), // kg CO2e/kWh
+export const energySchema = z.object({
+  // TODO
+});
+
+export const materialsSchema = z.object({
+  // TODO
+});
+
+export const wasteSchema = z.object({
+  // TODO
 });
 
 /** 2) Esquema total */
 export const appSchema = z.object({
-  general: generalInfoSchema,
-  transporte: transporteSchema,
-  comida: comidaSchema,
-  energia: energiaSchema,
+  general: generalSchema,
+  transport: transportSchema,
+  food: foodSchema,
+  energy: energySchema,
+  material: materialsSchema,
+  waste: wasteSchema,
 });
 export type AppData = z.infer<typeof appSchema>;
 
 /** 3) Cálculos */
 export function calcularResultados(d: AppData) {
-  const t =
-    d.transporte.kmPromedioAsistente *
-    d.general.asistentes *
-    d.transporte.factorTransporte;
-  const c =
-    d.comida.comidasPorDia *
-    d.general.dias *
-    d.general.asistentes *
-    d.comida.factorComida;
-  const e = d.energia.kwhTotales * d.energia.factorEnergia;
+  const t = 1 + 1;
+  const f = 1 + 1;
+  const e = 1 + 1;
+  const m = 1 + 1;
+  const w = 1 + 1;
 
-  const totalKg = t + c + e;
+  const totalKg = t + f + e + m + w;
   const arboles = Math.ceil(totalKg / 25); // sup: 25 kg CO2e compensa un árbol/año (ajusta a tu modelo)
-  const costo = arboles * d.general.costoArbol;
+  const costo = arboles * d.general.treeCost;
 
-  return { tKg: t, cKg: c, eKg: e, totalKg, arboles, costo };
+  return { tKg: t, fKg: f, eKg: e, mKg: m, wKg: w, totalKg, arboles, costo };
 }

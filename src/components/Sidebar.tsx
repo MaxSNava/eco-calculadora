@@ -1,24 +1,26 @@
-import { useApp } from "../app/store";
+import { useCalculatorStore } from "../app/store";
 
 const NAV: {
-  key: Parameters<typeof useApp.getState>["0"]["current"];
+  key: Parameters<typeof useCalculatorStore.getState>["0"]["current"];
   label: string;
-  icon?: string;
 }[] = [
-  { key: "general", label: "Información General", icon: "📋" },
-  { key: "transporte", label: "Transporte", icon: "🚌" },
-  { key: "comida", label: "Comida y Bebidas", icon: "🍽️" },
-  { key: "energia", label: "Energía", icon: "⚡" },
-  { key: "resumen", label: "Resultados", icon: "📈" },
+  { key: "general", label: "Información General" },
+  { key: "transport", label: "Transporte" },
+  { key: "food", label: "Comida y Bebidas" },
+  { key: "energy", label: "Energía" },
+  { key: "material", label: "Materiales e Insumos" },
+  { key: "waste", label: "Gestión de residuos" },
+  { key: "resume", label: "Resultados" },
 ];
 
 const Sidebar = () => {
-  const { current, setSection } = useApp();
+  const { current, setSection } = useCalculatorStore();
   return (
     <>
       <aside className="w-72 p-4">
         <div className="rounded-2xl border bg-white p-4 shadow-sm">
           <h2 className="text-lg font-semibold mb-2">Secciones</h2>
+          100 %
           <div className="mb-4 h-2 w-full rounded bg-gray-200">
             <div className="h-2 rounded bg-emerald-500" />
           </div>
@@ -33,7 +35,6 @@ const Sidebar = () => {
                     : "bg-white border"
                 }`}
               >
-                <span className="mr-2">{i.icon}</span>
                 {i.label}
               </button>
             ))}

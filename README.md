@@ -19,7 +19,6 @@ Calculadora para estimar la huella de carbono de eventos y generar un **PDF** co
 eco-calculadora/
 ├─ public/
 │  ├─ logo.png
-│  └─ vite.svg
 ├─ src/
 │  ├─ app/
 │  │  ├─ store.ts                # Zustand (estado global)
@@ -30,9 +29,6 @@ eco-calculadora/
 │  │  ├─ format.ts               # helpers de formato (números, unidades, fechas)
 │  ├─ components/
 │  │  ├─ Sidebar.tsx
-│  │  ├─ Header.tsx
-│  │  ├─ InputField.tsx          # input controlado para RHF
-│  │  ├─ DynamicTable.tsx        # tabla editable (si la usas)
 │  │  └─ ReportDisplay.tsx       # vista de resultados (previa al PDF)
 │  │  └─ FormSections/
 │  │     ├─ GeneralSection.tsx
@@ -43,9 +39,6 @@ eco-calculadora/
 │  │     └─ WasteSection.tsx
 │  ├─ pdf/
 │  │  ├─ PdfDoc.tsx              # @react-pdf/renderer: documento final
-│  │  └─ PdfStyles.ts            # estilos reutilizables del PDF
-│  ├─ pages/
-│  │  └─ CalculatorPage.tsx      # layout: sidebar izquierda + contenido derecha
 │  ├─ App.tsx
 │  ├─ main.tsx
 │  └─ index.css
