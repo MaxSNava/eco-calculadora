@@ -1,40 +1,36 @@
-import {
-  Calendar,
-  Users,
-  UserCheck,
-  Clock,
-  DollarSign,
-  BookImage,
-} from "lucide-react";
+import { Calendar, Users, UserCheck, Clock, BookImage } from "lucide-react";
 import { Card, CardHeader, CardContent, CardTitle } from "../ui/card";
 import { FormField } from "../ui/form-field";
 import { Input } from "../ui/input";
-import type z from "zod";
+import { z } from "zod";
 import { generalSchema } from "../../app/schemas";
 import { useCalculatorStore } from "../../app/store";
-import { useForm } from "react-hook-form";
+import { useForm, type SubmitHandler, type Resolver } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 type GeneralData = z.infer<typeof generalSchema>;
 
 const GeneralSection = () => {
-  const { data, updateGeneral } = useCalculatorStore();
+  const { data, updateGeneralData } = useCalculatorStore();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<GeneralData>({
-    resolver: zodResolver(generalSchema),
+    resolver: zodResolver(generalSchema) as Resolver<GeneralData>,
     defaultValues: data.general,
   });
 
-  const onSubmit = (values: GeneralData) => {
-    updateGeneral(values);
+  const onSubmit: SubmitHandler<GeneralData> = (values) => {
+    updateGeneralData(values);
   };
 
-  const handleFieldChange = (field: keyof GeneralData, value: any) => {
-    updateGeneral({ [field]: value });
+  const handleFieldChange = <K extends keyof GeneralData>(
+    field: K,
+    value: GeneralData[K]
+  ) => {
+    updateGeneralData({ [field]: value } as Partial<GeneralData>);
   };
 
   return (
@@ -59,19 +55,19 @@ const GeneralSection = () => {
               <FormField
                 label="Tipo de evento"
                 required
-                error={errors.eventeType?.message}
+                error={errors.eventType?.message}
                 description="Selecciona el tipo de evento que organizarás"
               >
                 <div className="relative">
                   <BookImage className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                   <Input
-                    {...register("eventeType")}
+                    {...register("eventType")}
                     type="text"
                     className="pl-10"
-                    error={!!errors.eventeType}
+                    error={!!errors.eventType}
                     onChange={(e) =>
                       handleFieldChange(
-                        "eventeType",
+                        "eventType",
                         e.target.value || "Undeffined"
                       )
                     }
@@ -160,23 +156,6 @@ const GeneralSection = () => {
                   />
                 </div>
               </FormField>
-            </div>
-
-            {/* Cost Information Card */}
-            <div className="mt-8 p-6 bg-gradient-to-r from-emerald-50 to-green-50 rounded-xl border border-emerald-200">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="h-8 w-8 rounded-lg bg-emerald-600 flex items-center justify-center">
-                  <DollarSign className="h-4 w-4 text-white" />
-                </div>
-                <h4 className="text-lg font-semibold text-emerald-900">
-                  Información de compensación
-                </h4>
-              </div>
-              <p className="text-sm text-emerald-700">
-                Cada árbol compensa aproximadamente 25 kg de CO₂ durante su vida
-                útil. El costo puede variar según la región y el tipo de
-                proyecto de reforestación.
-              </p>
             </div>
           </form>
         </CardContent>

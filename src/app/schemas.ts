@@ -12,7 +12,6 @@ export const generalSchema = z.object({
   eventDurationDay: z.coerce.number().int().min(1, ">= 1"),
   assistants: z.coerce.number().int().min(0),
   staff: z.coerce.number().int().min(0),
-  treeCost: z.coerce.number().min(0),
 });
 
 /** 2) Esquema total */
@@ -25,19 +24,3 @@ export const appSchema = z.object({
   waste: wasteSchema,
 });
 export type AppData = z.infer<typeof appSchema>;
-
-/** 3) Cálculos */
-/** TODO cambiar a otro archivo */
-export function calcularResultados(d: AppData) {
-  const t = 1 + 1;
-  const f = 1 + 1;
-  const e = 1 + 1;
-  const m = 1 + 1;
-  const w = 1 + 1;
-
-  const totalKg = t + f + e + m + w;
-  const arboles = Math.ceil(totalKg / 25); // sup: 25 kg CO2e compensa un árbol/año (ajusta a tu modelo)
-  const costo = arboles * d.general.treeCost;
-
-  return { tKg: t, fKg: f, eKg: e, mKg: m, wKg: w, totalKg, arboles, costo };
-}

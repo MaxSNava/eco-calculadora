@@ -5,3 +5,8 @@ export type SectionKey =
   | "energy"
   | "material"
   | "waste";
+
+export type CompletionStatus = {
+  ok: boolean;
+  issues: string[];
+};

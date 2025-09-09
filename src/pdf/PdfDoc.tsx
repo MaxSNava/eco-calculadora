@@ -1,6 +1,6 @@
 import { Document, Page, Text, View, StyleSheet } from "@react-pdf/renderer";
 import type { AppData } from "../app/schemas";
-import { calcularResultados } from "../app/schemas";
+import { calcularResultados } from "../utils/calculations";
 
 const styles = StyleSheet.create({
   page: { padding: 28 },
@@ -15,7 +15,6 @@ const styles = StyleSheet.create({
 });
 
 export function PdfDoc({ data }: { data: AppData }) {
-  const r = calcularResultados(data);
   return (
     <Document>
       <Page size="A4" style={styles.page}>
@@ -24,7 +23,6 @@ export function PdfDoc({ data }: { data: AppData }) {
         <Text style={styles.h2}>Información General</Text>
 
         <Text style={styles.h2}>Cálculos</Text>
-        <KV k="Transporte (kg CO₂e)" v={r.tKg.toFixed(2)} />
 
         <Text style={styles.small}>
           * Factores y supuestos pueden ajustarse según metodología.
