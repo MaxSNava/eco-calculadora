@@ -6,6 +6,7 @@ interface FormFieldProps {
   error?: string;
   required?: boolean;
   description?: string;
+  twocolum?: boolean;
 }
 
 export const FormField = ({
@@ -14,6 +15,7 @@ export const FormField = ({
   error,
   required,
   description,
+  twocolum,
 }: FormFieldProps) => {
   return (
     <div className="space-y-2">
@@ -22,7 +24,9 @@ export const FormField = ({
         {required && <span className="text-red-500 ml-1">*</span>}
       </label>
       {description && <p className="text-sm text-gray-600">{description}</p>}
-      {children}
+      <div className={twocolum ? "flex gap-2" : "flex flex-col"}>
+        {children}
+      </div>
       {error && (
         <p className="text-sm text-red-600 flex items-center gap-1">
           <span className="text-red-500">⚠</span>

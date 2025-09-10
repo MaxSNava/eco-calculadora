@@ -1,6 +1,6 @@
-import { Document, Page, Text, View, StyleSheet } from "@react-pdf/renderer";
+import { Document, Page, Text, StyleSheet } from "@react-pdf/renderer";
 import type { AppData } from "../app/schemas";
-import { calcularResultados } from "../utils/calculations";
+// import { calcularResultados } from "../utils/calculations";
 
 const styles = StyleSheet.create({
   page: { padding: 28 },
@@ -17,9 +17,9 @@ const styles = StyleSheet.create({
 export function PdfDoc({ data }: { data: AppData }) {
   return (
     <Document>
+      <p>{data.general.eventType}</p>
       <Page size="A4" style={styles.page}>
         <Text style={styles.h1}>Calculadora Carbono Neutral — Resultados</Text>
-
         <Text style={styles.h2}>Información General</Text>
 
         <Text style={styles.h2}>Cálculos</Text>
@@ -29,14 +29,5 @@ export function PdfDoc({ data }: { data: AppData }) {
         </Text>
       </Page>
     </Document>
-  );
-}
-
-function KV({ k, v }: { k: string; v: string }) {
-  return (
-    <View style={styles.row}>
-      <Text>{k}</Text>
-      <Text>{v}</Text>
-    </View>
   );
 }

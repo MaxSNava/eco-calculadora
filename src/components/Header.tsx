@@ -1,6 +1,6 @@
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import { useCalculatorStore } from "../app/store";
-import { calcularResultados } from "../utils/calculations";
+// import { calcularResultados } from "../utils/calculations";
 import { TreePine } from "lucide-react";
 import { PdfDoc } from "../pdf/PdfDoc";
 
@@ -27,7 +27,7 @@ const Header = () => {
           <div className="flex items-center gap-3">
             <span className="text-sm px-3 py-1 rounded-full bg-emerald-100">
               {/* TODO Calcular los resultados en toneladas  cambiar el kg */}
-              {calcularResultados(data).numeriot} kg CO₂e
+              {/*calcularResultados(data).numeriot*/} kg CO₂e
             </span>
 
             {/* TODO: Boton para generar el pdf cuando todas las secciones esten completas  */}
